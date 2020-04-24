@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="au theme template" />
+    <meta name="author" content="Hau Nguyen" />
+    <meta name="keywords" content="au theme template" />
+
+    <!-- Title Page-->
+    <title>Vehicle Plate Number Scanner</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
+    <script src="js/firebaseConfig.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/routing.js"></script>
+
+    <!-- Main CSS-->
+    <link rel="stylesheet" href="datatables/dataTables.bootstrap4.min.css">
+    <link href="css/font-awesome.css" rel="stylesheet" media="all" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" media="all" />
+    <link href="css/fontawesome-all.min.css" rel="stylesheet" media="all" />
+    <link href="css/font-face.css" rel="stylesheet" media="all" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="all" />
+    <link href="css/theme.css" rel="stylesheet" media="all" />
+
+</head>
+
+
+<body class="animsition">
+
+
+    <div class=" page-wrapper">
+        <div class="page-content--bge5">
+            <div class="container">
+                <div class="login-wrap">
+                    <div class="login-content">
+                        <div class="login-logo">
+                            <button onclick="backToMenu()" style="float: left;" class="btn btn-secondary btn-sm">
+                                <i class="fa fa-arrow-left"> BACK</i>
+                            </button>
+                            <h3>HISTORY</h3>
+                        </div>
+                        <div class="login-form">
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>Vehicles Caught:</strong>
+                                    <button onclick="createPDF()" style="float: right;" class="btn btn-success btn-sm">
+                                        <i class="fa fa-save"> SAVE</i>
+                                    </button>
+                                </div>
+                                <div class="card-body card-block">
+                                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                        <thead>
+                                            <th>DATE SOLVED</th>
+                                            <th>PLATE#</th>
+                                            <th>OIC</th>
+                                            <th>ACTION</th>
+                                        </thead>
+                                        <tbody id="tableBody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="pdfTable" style="display: none;">
+                                <table>
+                                    <tr>
+                                        <th>Date Solved</th>
+                                        <th>Date Reported</th>
+                                        <th>Violation</th>
+                                        <th>Plate #</th>
+                                        <th>Engine #</th>
+                                        <th>Chassis #</th>
+                                        <th>Maker</th>
+                                        <th>Model</th>
+                                        <th>Type</th>
+                                        <th>Color</th>
+                                        <th>Owner</th>
+                                        <th>Contact #</th>
+                                        <th>Incident Date</th>
+                                        <th>OIC</th>
+                                    </tr>
+                                    <tbody id="pdfBody">
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="datatables/jquery-3.3.1.js"></script>
+    <script src="datatables/jquery.dataTables.min.js"></script>
+    <script src="datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="js/history.js"></script>
+    <script>
+        var currentUser = localStorage.getItem("username");
+        if (currentUser != "ADMIN") {
+            document.getElementById("addRecordButton").style = "display:none";
+        }
+
+    </script>
+    <script>
+        function backToMenu() {
+            window.location.replace("menu.html");
+        }
+    </script>
+
+
+</body>
+
+</html>

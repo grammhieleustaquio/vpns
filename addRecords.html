@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="au theme template" />
+    <meta name="author" content="Hau Nguyen" />
+    <meta name="keywords" content="au theme template" />
+
+    <!-- Title Page-->
+    <title>Vehicle Plate Number Scanner</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
+    <script src="js/firebaseConfig.js"></script>
+    <script src="js/menu.js"></script>
+
+    <!-- Main CSS-->
+    <link href="css/font-awesome.css" rel="stylesheet" media="all" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" media="all" />
+    <link href="css/fontawesome-all.min.css" rel="stylesheet" media="all" />
+    <link href="css/font-face.css" rel="stylesheet" media="all" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="all" />
+    <link href="css/theme.css" rel="stylesheet" media="all" />
+
+</head>
+
+
+<body class="animsition">
+
+
+    <div class="page-wrapper">
+        <div class="page-content--bge5">
+            <div class="container">
+                <div class="login-wrap">
+                    <div class="login-content">
+                        <div class="login-logo">
+                            <button onclick="window.history.back()" style="float: left;"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fa fa-arrow-left"> BACK</i>
+                            </button>
+                            <h3>ADD RECORDS</h3>
+                        </div>
+                        <div class="login-form">
+                            <form id="addRecordsForm">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>RECORD INFO:</strong>
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Date Reported:</label>
+                                            <input type="datetime-local" id="reportedDate" class="form-control"
+                                                required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Violation: (Ex.
+                                                Stolen)</label>
+                                            <input type="text" id="recordType" placeholder="Enter Violation "
+                                                class="form-control" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Plate Number:</label>
+                                            <input type="text" id="plateNumber" placeholder="Enter Plate Number"
+                                                onkeyup="removeSpecialchar(this)" style="border-color: black"
+                                                class="form-control" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Engine Number (if any):</label>
+                                            <input type="text" id="engineNumber" placeholder="Enter Engine Number"
+                                                class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Chassis Number (if any):</label>
+                                            <input type="text" id="chassisNumber" placeholder="Enter Chassis Number"
+                                                class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Maker: (Ex.Toyota)</label>
+                                            <input type="text" id="maker" placeholder="Enter Maker" class="form-control"
+                                                required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Model:
+                                                (Ex.Vios)</label>
+                                            <input type="text" id="seriesType" placeholder="Enter Model"
+                                                class="form-control" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Vehicle Type: (Ex.
+                                                Van,Car)</label>
+                                            <input type="text" id="vehicleType" placeholder="Enter Vehicle Type"
+                                                class="form-control" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Vehicle Color: </label>
+                                            <input type="text" id="vehicleColor" placeholder="Enter Vehicle Color"
+                                                class="form-control" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Owner's Name:
+                                            </label>
+                                            <input type="text" id="ownerName" placeholder="Enter Owner's Name"
+                                                class="form-control" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Owner's Contact Number (if any):
+                                            </label>
+                                            <input type="text" id="ownerNumber"
+                                                placeholder="Enter Owner's Contact Number" onkeyup="numbersOnly(this)"
+                                                class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Date of Incident (if any):</label>
+                                            <input style="border-color: black" type="datetime-local" id="incidentDate"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="au-btn au-btn--block au-btn--aqua m-b-20" type="submit"
+                                    sendData(),changeBorderColor()>
+                                    Submit Record
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/addRecords.js"></script>
+    <script>
+        function removeSpecialchar(input) {
+            var regex = /[^0-9a-z- ]/gi;
+            input.value = input.value.replace(regex, "");
+        }
+        function numbersOnly(input) {
+            var regex = /[^0-9-]/gi;
+            input.value = input.value.replace(regex, "");
+        }
+    </script>
+
+
+
+</body>
+
+</html>

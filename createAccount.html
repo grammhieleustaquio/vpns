@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="au theme template" />
+    <meta name="author" content="Hau Nguyen" />
+    <meta name="keywords" content="au theme template" />
+
+    <!-- Title Page-->
+    <title>Vehicle Plate Number Scanner</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
+    <script src="js/firebaseConfig.js"></script>
+    <script src="js/menu.js"></script>
+
+
+
+
+
+    <!-- Main CSS-->
+    <link href="css/font-awesome.css" rel="stylesheet" media="all" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" media="all" />
+    <link href="css/fontawesome-all.min.css" rel="stylesheet" media="all" />
+    <link href="css/font-face.css" rel="stylesheet" media="all" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="all" />
+    <!-- <link href="css/select2.min.css" rel="stylesheet" media="all" /> -->
+    <link href="css/theme.css" rel="stylesheet" media="all" />
+</head>
+
+
+<body class="animsition">
+
+
+    <div class="page-wrapper">
+        <div class="page-content--bge5">
+            <div class="container">
+                <div class="login-wrap">
+                    <div class="login-content">
+                        <div class="login-logo">
+                            <button onclick="window.history.back()" style="float: left;"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fa fa-arrow-left"> BACK</i>
+                            </button>
+                            <h3>CREATE ACCOUNT</h3>
+                        </div>
+                        <div class="login-form">
+                            <form id="createAccountForm">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Account Information</strong>
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <div class="form-group">
+                                            <label for="" class=" form-control-label">Full Name:</label>
+                                            <input type="text" id="fullName" placeholder="Enter Full Name"
+                                                style="text-align: center;" class="form-control"
+                                                onkeyup="lettersOnly(this)" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="country" class=" form-control-label">Position:</label>
+                                            <div class="form-group">
+                                                <!-- <input class=" au-input au-input--full" type="text" id="position"
+                                                    style="text-align: center;" placeholder="Position" required /> -->
+                                                <select name="position" id="position" class="form-control" required>
+                                                    <option value="">Please select</option>
+                                                    <option value="PGEN">PGEN</option>
+                                                    <option value="PLTGEN">PLTGEN</option>
+                                                    <option value="PMGEN">PMGEN</option>
+                                                    <option value="PBGEN">PBGEN</option>
+                                                    <option value="PCOL">PCOL</option>
+                                                    <option value="PLTCOL">PLTCOL</option>
+                                                    <option value="PMAJ">PMAJ</option>
+                                                    <option value="PCPT">PCPT</option>
+                                                    <option value="PLT">PLT</option>
+                                                    <option value="PEMS">PEMS</option>
+                                                    <option value="PCMS">PCMS</option>
+                                                    <option value="PSMS">PSMS</option>
+                                                    <option value="PMSg">PMSg</option>
+                                                    <option value="PSSg">PSSg</option>
+                                                    <option value="PCpl">PCpl</option>
+                                                    <option value="Pat">Pat</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="" class=" form-control-label">Address:</label>
+                                            <input type="text" id="address" placeholder="Enter Address"
+                                                style="text-align: center;" class="form-control" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="" class=" form-control-label">Badge No.:
+                                                (ex. 000001 , 123456)</label>
+                                            <input class="form-control" type="text" id="badgeNumber"
+                                                style="text-align: center;" placeholder="Enter Badge Number"
+                                                onkeyup="numbersOnly(this)" pattern="[0-9]{6}" required />
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label for="" class=" form-control-label">Password:
+                                                <a class="fa fa-eye" id="toggle-eye" onclick=eyeIcon()></a>
+                                            </label>
+                                            <input class="form-control" type="password" id="password"
+                                                style="text-align: center;" placeholder="Enter Password" minlength="5"
+                                                required>
+                                            </input>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="" class=" form-control-label">Retype Password:</label>
+                                            <input class="form-control" type="password" id="retypePassword"
+                                                style="text-align: center;" placeholder="Retype Password" minlength="5"
+                                                required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="" class=" form-control-label">ADMIN PASSWORD:</label>
+                                            <input class="form-control" type="password" id="adminPassword"
+                                                style="text-align: center;" placeholder="ENTER ADMIN PASSWORD"
+                                                required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="au-btn au-btn--block au-btn--aqua m-b-20" type="submit"
+                                    sendData(),changePassType()>
+                                    Create Account
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/createAccount.js"></script>
+    <script>
+        function lettersOnly(input) {
+            var regex = /[^a-z-. ]/gi;
+            input.value = input.value.replace(regex, "");
+        }
+        function numbersOnly(input) {
+            var regex = /[^0-9-]/gi;
+            input.value = input.value.replace(regex, "");
+        }
+    </script>
+    <script>
+        function eyeIcon() {
+            var eye = document.getElementById("toggle-eye");
+            var x = document.getElementById("password");
+            var y = document.getElementById("retypePassword");
+
+            if (x.type === "password") {
+                x.type = "text";
+                y.type = "text";
+                eye.className = "fa fa-eye-slash";
+            } else {
+                x.type = "password";
+                y.type = "password";
+                eye.className = "fa fa-eye";
+            }
+        }
+    </script>
+</body>
+
+
+</html>
